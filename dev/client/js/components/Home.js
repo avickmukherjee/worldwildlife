@@ -10,13 +10,14 @@ import * as actionCreators from '../actions/';
 
 require('../../../scss/style.scss');
 
-class Home extends React.Component {	
-	render(){		
+class Home extends React.Component {
+	render(){
 		return (
-			<div>				
+			<div>
+			<Slider />
 				<div className="container">
 					 <AnimalSection resetAnimals={this.props.resetAnimals} getAllAnimals={this.props.getAllAnimals} animals={this.props.animals} />
-					 <BirdSection resetBirds={this.props.resetBirds} getAllBirds={this.props.getAllBirds} birds={this.props.birds} />	
+					 <BirdSection resetBirds={this.props.resetBirds} getAllBirds={this.props.getAllBirds} birds={this.props.birds} />
 					 <ReptileSection resetReptiles={this.props.resetReptiles} getAllReptiles={this.props.getAllReptiles} reptiles={this.props.reptiles} />
 				</div>
 			</div>
@@ -27,8 +28,8 @@ class Home extends React.Component {
 function mapStateToProps(state) {
   return {
     animals: state.animals,
-    birds: state.birds, 
-    reptiles: state.reptiles,    
+    birds: state.birds,
+    reptiles: state.reptiles,
   }
 }
 
