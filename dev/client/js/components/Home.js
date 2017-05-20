@@ -11,6 +11,19 @@ import * as actionCreators from '../actions/';
 require('../../../scss/style.scss');
 
 class Home extends React.Component {
+
+	componentDidMount() {
+	 	this.props.getAllAnimals();
+	  this.props.getAllBirds();
+ 		this.props.getAllReptiles()
+	}
+
+	 componentWillUnmount() {
+			this.props.resetAnimals();
+			this.props.resetBirds();
+			this.props.resetReptiles();
+	}
+
 	render(){
 		return (
 			<div>

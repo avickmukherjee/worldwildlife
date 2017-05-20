@@ -8,18 +8,18 @@ import SpeciesDetailImage from './SpeciesDetailImage';
 import SpeciesDescription from './SpeciesDescription';
 
 class SpeciesDetail extends React.Component  {
-	
+
 	constructor(props){
         super(props);
     }
 
-    componentDidMount() { 
+    componentDidMount() {
 
        if(this.props.params.id !=undefined){
        	 const {getSpeciesDetailById } = this.props;
     	 const speciesId = this.props.params.id;
-       	 getSpeciesDetailById(speciesId);        	 
-       }    
+       	 getSpeciesDetailById(speciesId);
+       }
     }
 
     componentWillUnmount() {
@@ -30,7 +30,7 @@ class SpeciesDetail extends React.Component  {
 
 
 	return (
-			<div>
+		<div className="container">
 			        <SpeciesDetailHeader speciesDetail={this.props.speciesData} />
 			        <div className="row">
 			            <div className="col-md-4">
@@ -41,22 +41,22 @@ class SpeciesDetail extends React.Component  {
 			               </div>
 			            </div>
 
-			            <div className="col-md-8"> 
+			            <div className="col-md-8">
                        <h1>Description :</h1>
                       <div className="col-md-11">
 			                  <SpeciesDescription speciesDetail={this.props.speciesData} />
                       </div>
                       <div className="col-md-1"></div>
 			            </div>
-					</div>  
-        </div>  
+					</div>
+        </div>
 
 		)
 	}
 
 }
 
-function mapStateToProps(state) {	
+function mapStateToProps(state) {
   return {
     speciesData: state.speciesData
   }
@@ -66,7 +66,7 @@ function mapDispachToProps(dispatch) {
   return bindActionCreators(
    {
    	getSpeciesDetailById : getSpeciesDetailById  ,
-   	resetSpeciesDetail : resetSpeciesDetail 
+   	resetSpeciesDetail : resetSpeciesDetail
    }
   	, dispatch);
 }
