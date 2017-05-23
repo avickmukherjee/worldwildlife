@@ -14,7 +14,7 @@ const BirdSection = (props) => {
     return(
      <div className="row">
             <BirdSectionHeader / >
-            <BirdGrid birdObj={birdObj} />
+            <BirdGrid {...props} birdObj={birdObj} />
             <BirdSectionFooter />
          </div>
      )

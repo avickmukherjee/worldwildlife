@@ -7,7 +7,7 @@ import CommonReducer from './CommonReducer';
 
 
 
-const allReducers = combineReducers({    
+const allReducers = combineReducers({
     animals : AnimalReducer,
     birds: BirdReducer,
     reptiles: ReptileReducer,

@@ -17,21 +17,24 @@ class Home extends React.Component {
 	  this.props.getAllBirds();
  		this.props.getAllReptiles()
 	}
-
+	shouldComponentUpdate(){
+	  return true;
+	}
 	 componentWillUnmount() {
 			this.props.resetAnimals();
 			this.props.resetBirds();
 			this.props.resetReptiles();
 	}
+	
 
 	render(){
 		return (
 			<div>
 			<Slider />
 				<div className="container">
-					 <AnimalSection resetAnimals={this.props.resetAnimals} getAllAnimals={this.props.getAllAnimals} animals={this.props.animals} />
-					 <BirdSection resetBirds={this.props.resetBirds} getAllBirds={this.props.getAllBirds} birds={this.props.birds} />
-					 <ReptileSection resetReptiles={this.props.resetReptiles} getAllReptiles={this.props.getAllReptiles} reptiles={this.props.reptiles} />
+					 <AnimalSection getAllAnimals={this.props.getAllAnimals} likeIncrement={this.props.likeIncrement} animals={this.props.animals}  />
+					 <BirdSection getAllBirds={this.props.getAllBirds} likeIncrement={this.props.likeIncrement} birds={this.props.birds} />
+					 <ReptileSection getAllReptiles={this.props.getAllReptiles} likeIncrement={this.props.likeIncrement} reptiles={this.props.reptiles} />
 				</div>
 			</div>
 		)
@@ -54,7 +57,8 @@ function mapDispachToProps(dispatch) {
    	getAllReptiles : actionCreators.getAllReptiles,
    	resetAnimals : actionCreators.resetAnimals,
    	resetBirds : actionCreators.resetBirds,
-   	resetReptiles : actionCreators.resetReptiles
+   	resetReptiles : actionCreators.resetReptiles,
+		likeIncrement: actionCreators.likeIncrement
    }
   	, dispatch);
 }

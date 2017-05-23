@@ -6,18 +6,18 @@ import SinlgeSpecies  from '../common/SinlgeSpecies';
 import { PropTypes } from 'react'
 
 const ReptileGrid = (props) => {
- 
-    const reptileObjects = props.reptileObj; 
+
+    const reptileObjects = props.reptileObj;
 
     return (
-            <div>       
-                {      
+            <div>
+                {
                   reptileObjects.map((reptile, index) => (
                     <div key={index}>
-                      <SinlgeSpecies  speciesDetail={reptile} />
+                      <SinlgeSpecies {...props} speciesDetail={reptile} indexNum= {index} />
                     </div>
                   ))
-                }          
+                }
             </div>
         )
 }

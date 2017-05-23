@@ -15,7 +15,7 @@ const ReptileSection = (props) => {
     return(
      <div className="row">
             <ReptileSectionHeader / >
-            <ReptileGrid reptileObj={reptileObj} />
+            <ReptileGrid {...props} reptileObj={reptileObj} />
             <ReptileSectionFooter />
          </div>
      )

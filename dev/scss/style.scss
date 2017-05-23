@@ -100,3 +100,37 @@ footer {
     height: 100px;
     overflow: hidden;
 }
+.grid-photo-wrap{
+    position:relative;
+}
+.likes-heart{
+  background :url(http://f.cl.ly/items/3Y373q2Q3J3Y1j203n0m/Bitmap-3.png) center no-repeat;
+  background-size :contain;
+  font-size : 2rem;
+  padding : 3rem;
+  position :absolute;
+  color : blue;
+  left: 35%;
+  bottom :10%;
+  pointer-events: none
+}
+// offset variable gets tacked for centering in addition to the scaling
+
+.likes-heart{
+  opacity:0;
+  transition : all 0.5s; // time to fade out after its done
+  transform: offsets scale(5); // this is the "end state"
+  display :inline-block;
+}
+  .like-enter{
+    transition :all .2s;
+    transform : offsets scale(1);
+    opacity:1;
+  }
+    .like-enter-active{
+      transform : offsets scale(5);
+    }
+
+  .like-leave-active{
+    display:none;
+  }

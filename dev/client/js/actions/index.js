@@ -2,10 +2,46 @@
 import request from 'axios';
 
 //Imoporting from Constants
-import {GET_ALL_ANIMALS,GET_ALL_BIRDS,GET_ALL_REPTILES ,GET_SPECIES_DETAILS_BY_ID,RESET_SPECIES_DETAIL,RESET_REPTILES,RESET_BIRDS,RESET_ANIMALS} from '../Constants/';
+import {GET_ALL_ANIMALS,GET_ALL_BIRDS,GET_ALL_REPTILES ,LIKE_INCREMENT_REPTILE,LIKE_INCREMENT_BIRD,LIKE_INCREMENT_ANIMAL,GET_SPECIES_DETAILS_BY_ID,RESET_SPECIES_DETAIL,RESET_REPTILES,RESET_BIRDS,RESET_ANIMALS} from '../Constants/';
 import axios from 'axios';
 
+//Action  increment like
+export const likeIncrement = (index,speciesType,speciesId) => {
 
+	return function(dispatch,getState) {
+		var typeAction = '';
+		if(speciesType == 'Birds'){
+			typeAction = LIKE_INCREMENT_BIRD;
+			const { birds } = getState();
+			var currentStateVal = birds;
+		}else if(speciesType == 'Animals'){
+			typeAction = LIKE_INCREMENT_ANIMAL;
+			const { animals } = getState();
+			var currentStateVal = animals;
+		}else if(speciesType == 'Reptiles'){
+			typeAction = LIKE_INCREMENT_REPTILE;
+			const { reptiles } = getState();
+			var currentStateVal = reptiles;
+		}
+		const postData = {"Animals": {"id": speciesId}};
+		console.log("index=>",index)
+		axios.post('http://worldwildlife.appexwebsolutions.com/backend/animals/increaseLike.json', postData)
+				.then(response => {
+					if(response.data.message == 'Saved'){
+						dispatch({
+						 type: typeAction,
+						 prevStateVal : currentStateVal ,
+						 like_count: response.data.like_count,
+						 id:response.data.id,
+						 index: index
+					 });
+					}
+					})
+					.catch((error) => {
+			      console.log(error);
+			    })
+		  }
+}
 //Action  Get All Animals Called
 export const getAllAnimals = () => {
 	return function(dispatch) {
@@ -13,7 +49,7 @@ export const getAllAnimals = () => {
 		    .then(response => {
 		      dispatch({
 		        type: GET_ALL_ANIMALS,
-		        animals: response.data.animals
+		        animals: response.data
 		      });
 		    })
 		    .catch((error) => {
@@ -29,7 +65,7 @@ export const getAllBirds = () => {
 		    .then(response => {
 		      dispatch({
 		        type: GET_ALL_BIRDS,
-		        birds: response.data.animals
+		        birds: response.data
 		      });
 		    })
 		    .catch((error) => {
@@ -45,7 +81,7 @@ export const getAllReptiles = () => {
 		    .then(response => {
 		      dispatch({
 		        type: GET_ALL_REPTILES,
-		        reptiles: response.data.animals
+		        reptiles: response.data
 		      });
 		    })
 		    .catch((error) => {

@@ -6,16 +6,16 @@ import { PropTypes } from 'react'
 
 const AnimalGrid = (props) => {
 
-    const animalObjects = props.animalObj;   
+    const animalObjects = props.animalObj;
     return(
-		<div>       
-            {      
+		<div>
+            {
               animalObjects.map((animal, index) => (
                 <div key={index}>
-                  <SinlgeSpecies  speciesDetail={animal} />
+                  <SinlgeSpecies {...props} speciesDetail={animal} likeIncrement={props.likeIncrement} indexNum= {index}/>
                 </div>
               ))
-            }        
+            }
         </div>
 	   )
 }
